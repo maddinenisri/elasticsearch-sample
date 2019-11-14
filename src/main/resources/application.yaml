@@ -1,0 +1,5 @@
+escluster:
+  hostname: localhost
+  port: 9200
+  userName:
+  password:

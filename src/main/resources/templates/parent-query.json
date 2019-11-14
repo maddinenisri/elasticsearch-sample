@@ -1,0 +1,9 @@
+{
+  "query": {
+    "has_parent": {
+      "parent_type": "artist",
+      "query": { "match": { "{{field}}": "{{value}}" } }
+    , "inner_hits": {}
+    }
+  }
+}
