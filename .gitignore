@@ -5,3 +5,7 @@ target/
 build/
 gradle/
 .gradle/
+terraform.tfstate
+.terraform/
+terraform.tfstate.backup
+*.zip
