@@ -1,0 +1,58 @@
+{
+  "create": {
+    "entityType": "application",
+    "entityId": "1",
+    "payload": {
+      "entityTitle": "test 1",
+      "type": 2
+    },
+    "dept": 10
+  },
+  "get": {
+    "query": {
+      "match_all": {}
+    }
+  },
+  "add_nested": {
+    "script": {
+      "source": "if(ctx._source.application_links == null) {ctx._source.application_links = new ArrayList(); } ctx._source.application_links.add(params.application_link)",
+      "lang": "painless",
+      "params": {
+        "application_link": {
+          "appId": "1234",
+          "subId": "1",
+          "rank": 2,
+          "comments": "test 2"
+        }
+      }
+    }
+  },
+  "update_nested": {
+    "script": {
+      "source": "for (int i = 0; i < ctx._source.application_links.length; ++i) {if(ctx._source.application_links[i].appId == params.application_link.appId) {ctx._source.application_links[i] = params.application_link}}",
+      "lang": "painless",
+      "params": {
+        "application_link": {
+          "appId": "1234",
+          "subId": "1",
+          "rank": 3,
+          "comments": "test 3"
+        }
+      }
+    }
+  },
+  "remove_nested": {
+    "script": {
+      "source": "for (int i = 0; i < ctx._source.application_links.length; ++i) {if(ctx._source.application_links[i].appId == params.application_link.appId) {ctx._source.application_links.remove(i)}}",
+      "lang": "painless",
+      "params": {
+        "application_link": {
+          "appId": "1234",
+          "subId": "1",
+          "rank": 3,
+          "comments": "test 3"
+        }
+      }
+    }
+  }
+}
